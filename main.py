@@ -25,12 +25,26 @@ while direcotories_list:
                 other_extention_path = os.path.join(classified_directory, 'other')
                 if not os.path.exists(other_extention_path):
                     os.mkdir(other_extention_path)
-                # TODO: check if file exist
-                shutil.copy(file_path, other_extention_path)
+                # check if file exist
+                file_new_path = os.path.join(other_extention_path, directory_name)
+                same_name_count = 0
+                while os.path.exists(file_new_path):
+                    same_name_count += 1
+                    new_file_name = f'renamed{same_name_count}-{directory_name}'
+                    file_new_path = os.path.join(other_extention_path, new_file_name)
+                
+                shutil.copy(file_path, file_new_path)
             # files with extentions
             else:
                 with_extention_files_path = os.path.join(classified_directory, file_extention)
                 if not os.path.exists(with_extention_files_path):
                     os.mkdir(with_extention_files_path)
-                # TODO: check if file exist
-                shutil.copy(file_path, with_extention_files_path)
+                # check if file exist
+                file_new_path = os.path.join(with_extention_files_path, directory_name)
+                same_name_count = 0
+                while os.path.exists(file_new_path):
+                    same_name_count += 1
+                    new_file_name = f'renamed{same_name_count}-{directory_name}'
+                    file_new_path = os.path.join(with_extention_files_path, new_file_name)
+                
+                shutil.copy(file_path, file_new_path)
